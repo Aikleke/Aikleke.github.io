@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实战tensorflow框架导入数据MNIST 是一个非常有名的手写数字识别的数据集，在很多的资料里面，这个数据集都作为深度学习入门的案例。 我们从中下载数据。可能会下载超时并且报错，为了避开这个麻烦我选择从网上自行下载数据。 12from tensorflow.examples.tutorials.mnist  import  input_dataimport tensorflow as tf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensor 实战（1）手写数字识别">
+<meta property="og:url" content="http://yoursite.com/2019/05/21/tensor-实战（1）手写数字识别/index.html">
+<meta property="og:site_name" content="leekle 的博客">
+<meta property="og:description" content="实战tensorflow框架导入数据MNIST 是一个非常有名的手写数字识别的数据集，在很多的资料里面，这个数据集都作为深度学习入门的案例。 我们从中下载数据。可能会下载超时并且报错，为了避开这个麻烦我选择从网上自行下载数据。 12from tensorflow.examples.tutorials.mnist  import  input_dataimport tensorflow as tf">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-21T12:17:40.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tensor 实战（1）手写数字识别">
+<meta name="twitter:description" content="实战tensorflow框架导入数据MNIST 是一个非常有名的手写数字识别的数据集，在很多的资料里面，这个数据集都作为深度学习入门的案例。 我们从中下载数据。可能会下载超时并且报错，为了避开这个麻烦我选择从网上自行下载数据。 12from tensorflow.examples.tutorials.mnist  import  input_dataimport tensorflow as tf">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/21/tensor-实战（1）手写数字识别/">
+
+
+
+
+
+  <title>tensor 实战（1）手写数字识别 | leekle 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">leekle 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/tensor-实战（1）手写数字识别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="leekle">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leekle 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tensor 实战（1）手写数字识别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T19:00:14+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tensorflow-实战/" itemprop="url" rel="index">
+                    <span itemprop="name">tensorflow 实战</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实战tensorflow框架"><a href="#实战tensorflow框架" class="headerlink" title="实战tensorflow框架"></a>实战tensorflow框架</h1><h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><p>MNIST 是一个非常有名的手写数字识别的数据集，在很多的资料里面，这个数据集都作为深度学习入门的案例。</p>
+<p>我们从中下载数据。可能会下载超时并且报错，为了避开这个麻烦我选择从网上自行下载数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist  <span class="keyword">import</span>  input_data</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
+<h2 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h2><p>我们对数据进行查看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"training data size:"</span>,mnist.train.labels.shape)</span><br><span class="line">print(<span class="string">"validating data size:"</span>,mnist.validation.labels.shape)</span><br><span class="line">print(<span class="string">"testing data size:"</span>,mnist.test.labels.shape)</span><br><span class="line">print(<span class="string">"training data size:"</span>,mnist.train.images.shape)</span><br></pre></td></tr></table></figure>
+<p>输出信息如下：</p>
+<p>我们可以看到，训练集是  （55000，784）的图片  加上 (55000，10) 的结果集合</p>
+<p>验证集和测试集不做过多说明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">training data size: (55000, 10)</span><br><span class="line">validating data size: (5000, 10)</span><br><span class="line">testing data size: (10000, 10)</span><br><span class="line">training data size: (55000, 784)</span><br></pre></td></tr></table></figure>
+<h2 id="softmax-回归"><a href="#softmax-回归" class="headerlink" title="softmax 回归"></a>softmax 回归</h2><p>不同于sigmoid，这是一个可以进行多元分类的函数。</p>
+<p>softmax 会算出 特征属于每个类别的概率，然后取概率最大的那一个进行分类。</p>
+<p>例如  1 的概率 20%，  3的概率是 30%，4的概率50%。算法会判定这是 4</p>
+<p>一般作为输出层的激活函数使用。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.softmax</span><br></pre></td></tr></table></figure>
+<h1 id="我们开始写代码："><a href="#我们开始写代码：" class="headerlink" title="我们开始写代码："></a>我们开始写代码：</h1><p>我们先定义一些全局参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INPUT_NODE=<span class="number">784</span></span><br><span class="line">OUTPUT_NODE=<span class="number">10</span></span><br><span class="line">LAYER1_NODE=<span class="number">500</span></span><br><span class="line">BATCH_SIZE=<span class="number">100</span></span><br><span class="line">LEARNING_RATE_BASE=<span class="number">0.8</span></span><br><span class="line">LEARNING_RATE_DECAY=<span class="number">0.99</span>       <span class="comment">#学习率衰减率</span></span><br><span class="line">REGULARIZATION_RATE=<span class="number">0.0001</span>  <span class="comment">#正则化在损失函数中的系数</span></span><br><span class="line">TRAINING_STEPS=<span class="number">30000</span>             <span class="comment">#训练轮数</span></span><br><span class="line">MOVING_AVERAGE_DECAY=<span class="number">0.99</span>    <span class="comment">#滑动平均衰减率</span></span><br></pre></td></tr></table></figure>
+<p>我们写一下向前传播函数</p>
+<p>注释部分写了一下我自己的疑惑</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inference</span><span class="params">(input_tensor,avg_class,weights1,biases1,weights2,biases2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> avg_class==<span class="literal">None</span>:</span><br><span class="line">        layer1=tf.nn.relu(tf.matmul(input_tensor,weights1)+biases1)</span><br><span class="line">        <span class="keyword">return</span> tf.matmul(layer1,weights2)+biases2  </span><br><span class="line">        <span class="comment">#为啥这里  不return  tf.nn.softmax(tf.matmul(layer1,weights2)+biases2)?</span></span><br><span class="line">        <span class="comment">#我试着  换了一下，结果发现 准确率下降了</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        layer1=tf.nn.relu(tf.matmul(input_tensor,avg_class.average(weights1))+avg_class.average(biases1))</span><br><span class="line">        <span class="keyword">return</span> tf.nn\</span><br><span class="line">      .softmax(tf.matmul(layer1,avg_class.average(weights2))+avg_class.average(biases2))</span><br></pre></td></tr></table></figure>
+<p>我们写一下训练函数:</p>
+<p>注释部分写了一下我自己的疑惑</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(mnist)</span>:</span></span><br><span class="line">    x=tf.placeholder(tf.float32,[<span class="literal">None</span>,INPUT_NODE],name=<span class="string">'x-input'</span>)</span><br><span class="line">    y_=tf.placeholder(tf.float32,[<span class="literal">None</span>,OUTPUT_NODE],name=<span class="string">'y-input'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#生成隐藏层参数</span></span><br><span class="line">    weights1=tf.Variable(  tf.truncated_normal([INPUT_NODE,LAYER1_NODE],stddev=<span class="number">0.1</span>) )<span class="comment">#stddev  代表标准差</span></span><br><span class="line">    biases1=tf.Variable(tf.constant(<span class="number">0.1</span>,shape=[LAYER1_NODE]))</span><br><span class="line">    weights2=tf.Variable( tf.truncated_normal([LAYER1_NODE,OUTPUT_NODE],stddev=<span class="number">0.1</span>))</span><br><span class="line">    biases2=tf.Variable(tf.constant(<span class="number">0.1</span>,shape=[OUTPUT_NODE]))</span><br><span class="line">    y=inference(x,<span class="literal">None</span>,weights1,biases1,weights2,biases2)  <span class="comment">#不适用滑动平均值</span></span><br><span class="line">    global_step=tf.Variable(<span class="number">0</span>,trainable=<span class="literal">False</span>)      <span class="comment">#一个全局 训练次数，会被下面的函数改变</span></span><br><span class="line">    variable_averages=tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY,global_step)</span><br><span class="line">    variable_averages_op=variable_averages.apply(tf.trainable_variables()) <span class="comment">#applay？</span></span><br><span class="line">    average_y=inference(x,variable_averages,weights1,biases1,weights2,biases2) </span><br><span class="line">	 	cross_entropy=tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y,labels=tf\</span><br><span class="line">                                                                       .argmax(y_,<span class="number">1</span>))</span><br><span class="line">    cross_entropy_mean=tf.reduce_mean(cross_entropy)</span><br><span class="line">    regularizer=tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)</span><br><span class="line">    regularization=regularizer(weights1)+regularizer(weights2)</span><br><span class="line">    loss=cross_entropy_mean+regularization</span><br><span class="line">		learning_rate=tf.train.exponential_decay(LEARNING_RATE_BASE,global_step,mnist\</span><br><span class="line">                                         .train.num_examples/BATCH_SIZE,LEARNING_RATE_DECAY)</span><br><span class="line">    train_step=tf.train.GradientDescentOptimizer(learning_rate)\</span><br><span class="line">    .minimize(loss,global_step=global_step)</span><br><span class="line">    <span class="keyword">with</span> tf.control_dependencies([train_step,variable_averages_op]):</span><br><span class="line">        train_op=tf.no_op(name=<span class="string">'train'</span>)</span><br><span class="line">    		correct_prediction=tf.equal(tf.argmax(average_y,<span class="number">1</span>),tf.argmax(y_,<span class="number">1</span>))</span><br><span class="line">    		accuracy=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))</span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        tf.global_variables_initializer().run()</span><br><span class="line">        validate_feed=&#123;x: mnist.validation.images,</span><br><span class="line">                             y_: mnist.validation.labels &#125;</span><br><span class="line">        test_feed=&#123;x: mnist.test.images,y_:mnist.test.labels&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(TRAINING_STEPS):</span><br><span class="line">            <span class="keyword">if</span> i%<span class="number">1000</span> ==<span class="number">0</span>:</span><br><span class="line">                validate_acc=sess.run(accuracy,feed_dict=validate_feed)</span><br><span class="line">                print(<span class="string">"After %d training step(s),validation accuracy "</span></span><br><span class="line">                     <span class="string">"using average model is %g "</span>% (i,validate_acc))</span><br><span class="line">            xs,ys=mnist.train.next_batch(BATCH_SIZE)</span><br><span class="line">            sess.run(train_op,feed_dict=&#123;x: xs, y_ :ys&#125;)</span><br><span class="line">        test_acc=sess.run(accuracy,feed_dict=test_feed)</span><br><span class="line">        print(<span class="string">"After %d training step(s),test accuracy "</span></span><br><span class="line">                     <span class="string">"using average model is %g "</span>% (TRAINING_STEPS,test_acc))</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，训练一个神经网络其实并不是很难</p>
+<p>可以分为如下的几个步骤</p>
+<ul>
+<li>拿到数据，将数据进行前向传播</li>
+<li>将得到的结果与标准答案对比，计算损失</li>
+<li>选取反馈函数，进行反馈</li>
+<li>准确率测试</li>
+</ul>
+<p>全部代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist  <span class="keyword">import</span>  input_data</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">INPUT_NODE=<span class="number">784</span></span><br><span class="line">OUTPUT_NODE=<span class="number">10</span></span><br><span class="line">LAYER1_NODE=<span class="number">500</span></span><br><span class="line">BATCH_SIZE=<span class="number">100</span></span><br><span class="line">LEARNING_RATE_BASE=<span class="number">0.8</span></span><br><span class="line">LEARNING_RATE_DECAY=<span class="number">0.99</span>       <span class="comment">#学习率衰减率</span></span><br><span class="line">REGULARIZATION_RATE=<span class="number">0.0001</span>  <span class="comment">#正则化在损失函数中的系数</span></span><br><span class="line">TRAINING_STEPS=<span class="number">30000</span>             <span class="comment">#训练轮数</span></span><br><span class="line">MOVING_AVERAGE_DECAY=<span class="number">0.99</span>    <span class="comment">#滑动平均衰减率</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inference</span><span class="params">(input_tensor,avg_class,weights1,biases1,weights2,biases2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> avg_class==<span class="literal">None</span>:</span><br><span class="line">        layer1=tf.nn.relu(tf.matmul(input_tensor,weights1)+biases1)</span><br><span class="line">        <span class="keyword">return</span> tf.matmul(layer1,weights2)+biases2  </span><br><span class="line">        <span class="comment">#为啥这里  不return  tf.nn.softmax(tf.matmul(layer1,weights2)+biases2)?</span></span><br><span class="line">        <span class="comment">#我试着  换了一下，结果发现 准确率下降了</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        layer1=tf.nn.relu(tf.matmul(input_tensor,avg_class.average(weights1))+avg_class.average(biases1))</span><br><span class="line">        <span class="keyword">return</span> tf.nn\</span><br><span class="line">      .softmax(tf.matmul(layer1,avg_class.average(weights2))+avg_class.average(biases2))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(mnist)</span>:</span></span><br><span class="line">    x=tf.placeholder(tf.float32,[<span class="literal">None</span>,INPUT_NODE],name=<span class="string">'x-input'</span>)</span><br><span class="line">    y_=tf.placeholder(tf.float32,[<span class="literal">None</span>,OUTPUT_NODE],name=<span class="string">'y-input'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#生成隐藏层参数</span></span><br><span class="line">    weights1=tf.Variable(  tf.truncated_normal([INPUT_NODE,LAYER1_NODE],stddev=<span class="number">0.1</span>) )<span class="comment">#stddev  代表标准差</span></span><br><span class="line">    biases1=tf.Variable(tf.constant(<span class="number">0.1</span>,shape=[LAYER1_NODE]))</span><br><span class="line">    weights2=tf.Variable( tf.truncated_normal([LAYER1_NODE,OUTPUT_NODE],stddev=<span class="number">0.1</span>))</span><br><span class="line">    biases2=tf.Variable(tf.constant(<span class="number">0.1</span>,shape=[OUTPUT_NODE]))</span><br><span class="line">    y=inference(x,<span class="literal">None</span>,weights1,biases1,weights2,biases2)  <span class="comment">#不适用滑动平均值</span></span><br><span class="line">    global_step=tf.Variable(<span class="number">0</span>,trainable=<span class="literal">False</span>)      <span class="comment">#一个全局 训练次数，会被下面的函数改变</span></span><br><span class="line">    variable_averages=tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY,global_step)</span><br><span class="line">    variable_averages_op=variable_averages.apply(tf.trainable_variables()) <span class="comment">#applay？</span></span><br><span class="line">    average_y=inference(x,variable_averages,weights1,biases1,weights2,biases2) </span><br><span class="line">	 	cross_entropy=tf.nn.sparse_softmax_cross_entropy_with_logits(logits=y,labels=tf\</span><br><span class="line">                                                                       .argmax(y_,<span class="number">1</span>))</span><br><span class="line">    cross_entropy_mean=tf.reduce_mean(cross_entropy)</span><br><span class="line">    regularizer=tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)</span><br><span class="line">    regularization=regularizer(weights1)+regularizer(weights2)</span><br><span class="line">    loss=cross_entropy_mean+regularization</span><br><span class="line">		learning_rate=tf.train.exponential_decay(LEARNING_RATE_BASE,global_step,mnist\</span><br><span class="line">                                         .train.num_examples/BATCH_SIZE,LEARNING_RATE_DECAY)</span><br><span class="line">    train_step=tf.train.GradientDescentOptimizer(learning_rate)\</span><br><span class="line">    .minimize(loss,global_step=global_step)</span><br><span class="line">    <span class="keyword">with</span> tf.control_dependencies([train_step,variable_averages_op]):</span><br><span class="line">        train_op=tf.no_op(name=<span class="string">'train'</span>)</span><br><span class="line">    		correct_prediction=tf.equal(tf.argmax(average_y,<span class="number">1</span>),tf.argmax(y_,<span class="number">1</span>))</span><br><span class="line">    		accuracy=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))</span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        tf.global_variables_initializer().run()</span><br><span class="line">        validate_feed=&#123;x: mnist.validation.images,</span><br><span class="line">                             y_: mnist.validation.labels &#125;</span><br><span class="line">        test_feed=&#123;x: mnist.test.images,y_:mnist.test.labels&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(TRAINING_STEPS):</span><br><span class="line">            <span class="keyword">if</span> i%<span class="number">1000</span> ==<span class="number">0</span>:</span><br><span class="line">                validate_acc=sess.run(accuracy,feed_dict=validate_feed)</span><br><span class="line">                print(<span class="string">"After %d training step(s),validation accuracy "</span></span><br><span class="line">                     <span class="string">"using average model is %g "</span>% (i,validate_acc))</span><br><span class="line">            xs,ys=mnist.train.next_batch(BATCH_SIZE)</span><br><span class="line">            sess.run(train_op,feed_dict=&#123;x: xs, y_ :ys&#125;)</span><br><span class="line">        test_acc=sess.run(accuracy,feed_dict=test_feed)</span><br><span class="line">        print(<span class="string">"After %d training step(s),test accuracy "</span></span><br><span class="line">                     <span class="string">"using average model is %g "</span>% (TRAINING_STEPS,test_acc))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(arg=None)</span>:</span></span><br><span class="line">  mnist=input_data.read_data_sets(<span class="string">"MNIST_data/"</span>,one_hot=<span class="literal">True</span>)</span><br><span class="line">  train(mnist)</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">  tf.app.run()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/16/pandas-sql/" rel="next" title="pandas-sql">
+                <i class="fa fa-chevron-left"></i> pandas-sql
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+   <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="leekle">
+</a>
+
+            
+              <p class="site-author-name" itemprop="name">leekle</p>
+              <p class="site-description motion-element" itemprop="description">leekle</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实战tensorflow框架"><span class="nav-number">1.</span> <span class="nav-text">实战tensorflow框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入数据"><span class="nav-number">1.1.</span> <span class="nav-text">导入数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看数据"><span class="nav-number">1.2.</span> <span class="nav-text">查看数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#softmax-回归"><span class="nav-number">1.3.</span> <span class="nav-text">softmax 回归</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我们开始写代码："><span class="nav-number">2.</span> <span class="nav-text">我们开始写代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-和合法化"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leekle</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+-->
+
+
+
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

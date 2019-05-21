@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="pandas  sql  merge12345678import numpy as npna = np.array([[&apos;name&apos;, &apos;gender&apos;, &apos;age&apos;],                [&apos;frank&apos;, &apos;M&apos;, 29],                [&apos;mary&apos;, &apos;F&apos;, 23],                [&apos;tom&apos;, &apos;M&apos;, 35],">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas-sql">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/pandas-sql/index.html">
+<meta property="og:site_name" content="leekle 的博客">
+<meta property="og:description" content="pandas  sql  merge12345678import numpy as npna = np.array([[&apos;name&apos;, &apos;gender&apos;, &apos;age&apos;],                [&apos;frank&apos;, &apos;M&apos;, 29],                [&apos;mary&apos;, &apos;F&apos;, 23],                [&apos;tom&apos;, &apos;M&apos;, 35],">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/pandas-sql/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/pandas-sql/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/pandas-sql/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/16/pandas-sql/4.png">
+<meta property="og:updated_time" content="2019-05-21T10:58:10.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandas-sql">
+<meta name="twitter:description" content="pandas  sql  merge12345678import numpy as npna = np.array([[&apos;name&apos;, &apos;gender&apos;, &apos;age&apos;],                [&apos;frank&apos;, &apos;M&apos;, 29],                [&apos;mary&apos;, &apos;F&apos;, 23],                [&apos;tom&apos;, &apos;M&apos;, 35],">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/16/pandas-sql/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/16/pandas-sql/">
+
+
+
+
+
+  <title>pandas-sql | leekle 的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">leekle 的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/16/pandas-sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="leekle">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="leekle 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pandas-sql</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T21:09:31+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="pandas-sql-merge"><a href="#pandas-sql-merge" class="headerlink" title="pandas  sql  merge"></a>pandas  sql  merge</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">na = np.array([[<span class="string">'name'</span>, <span class="string">'gender'</span>, <span class="string">'age'</span>], </span><br><span class="line">               [<span class="string">'frank'</span>, <span class="string">'M'</span>, <span class="number">29</span>], </span><br><span class="line">               [<span class="string">'mary'</span>, <span class="string">'F'</span>, <span class="number">23</span>], </span><br><span class="line">               [<span class="string">'tom'</span>, <span class="string">'M'</span>, <span class="number">35</span>], </span><br><span class="line">               [<span class="string">'ted'</span>, <span class="string">'M'</span>, <span class="number">33</span>], </span><br><span class="line">               [<span class="string">'jean'</span>, <span class="string">'F'</span>, <span class="number">21</span>], [<span class="string">'lisa'</span>, <span class="string">'F'</span>, <span class="number">20</span>]])</span><br><span class="line">na</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">array([[&apos;name&apos;, &apos;gender&apos;, &apos;age&apos;],</span><br><span class="line">       [&apos;frank&apos;, &apos;M&apos;, &apos;29&apos;],</span><br><span class="line">       [&apos;mary&apos;, &apos;F&apos;, &apos;23&apos;],</span><br><span class="line">       [&apos;tom&apos;, &apos;M&apos;, &apos;35&apos;],</span><br><span class="line">       [&apos;ted&apos;, &apos;M&apos;, &apos;33&apos;],</span><br><span class="line">       [&apos;jean&apos;, &apos;F&apos;, &apos;21&apos;],</span><br><span class="line">       [&apos;lisa&apos;, &apos;F&apos;, &apos;20&apos;]], dtype=&apos;&lt;U6&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame([[<span class="string">'frank'</span>, <span class="string">'M'</span>, <span class="number">29</span>], </span><br><span class="line">                   [<span class="string">'mary'</span>, <span class="string">'F'</span>, <span class="number">23</span>], </span><br><span class="line">                   [<span class="string">'tom'</span>, <span class="string">'M'</span>, <span class="number">35</span>], </span><br><span class="line">                   [<span class="string">'ted'</span>, <span class="string">'M'</span>, <span class="number">33</span>], </span><br><span class="line">                   [<span class="string">'jean'</span>, <span class="string">'F'</span>, <span class="number">21</span>], </span><br><span class="line">                   [<span class="string">'lisa'</span>, <span class="string">'F'</span>, <span class="number">20</span>]])</span><br><span class="line">df.columns=[<span class="string">'name'</span>,<span class="string">'gender'</span>,<span class="string">'age'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/16/pandas-sql/1.png" alt="avatar"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'age'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0    29</span><br><span class="line">1    23</span><br><span class="line">2    35</span><br><span class="line">3    33</span><br><span class="line">4    21</span><br><span class="line">5    20</span><br><span class="line">Name: age, dtype: int64</span><br></pre></td></tr></table></figure>
+<h1 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h1><h2 id="赋值构建"><a href="#赋值构建" class="headerlink" title="赋值构建"></a>赋值构建</h2><h3 id="（1）二维数组方式"><a href="#（1）二维数组方式" class="headerlink" title="（1）二维数组方式"></a>（1）二维数组方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame([[<span class="string">'frank'</span>, <span class="string">'M'</span>, <span class="number">29</span>], </span><br><span class="line">                   [<span class="string">'mary'</span>, <span class="string">'F'</span>, <span class="number">23</span>], </span><br><span class="line">                   [<span class="string">'tom'</span>, <span class="string">'M'</span>, <span class="number">35</span>], </span><br><span class="line">                   [<span class="string">'ted'</span>, <span class="string">'M'</span>, <span class="number">33</span>], </span><br><span class="line">                   [<span class="string">'jean'</span>, <span class="string">'F'</span>, <span class="number">21</span>], </span><br><span class="line">                   [<span class="string">'lisa'</span>, <span class="string">'F'</span>, <span class="number">20</span>]])</span><br><span class="line">df.columns = [<span class="string">'name'</span>, <span class="string">'gender'</span>, <span class="string">'age'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/16/pandas-sql/2.png" alt="avatar"></p>
+<h3 id="2-字典行列表方式-值为单值的字典"><a href="#2-字典行列表方式-值为单值的字典" class="headerlink" title="(2)字典行列表方式-值为单值的字典"></a>(2)字典行列表方式-值为单值的字典</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df =pd.DataFrame([&#123;<span class="string">'name'</span>:<span class="string">'frank'</span>,<span class="string">'gender'</span>:<span class="string">'M'</span>,<span class="string">'age'</span>:<span class="number">29</span>&#125;,\</span><br><span class="line">                 &#123;<span class="string">'name'</span>:<span class="string">'mary'</span>,<span class="string">'gender'</span>:<span class="string">'F'</span>,<span class="string">'age'</span>:<span class="number">23</span>,<span class="string">'employee'</span>:<span class="literal">True</span>&#125;])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/16/pandas-sql/3.png" alt="avatar"></p>
+<h3 id="3-字典行列表的方式-值为列表"><a href="#3-字典行列表的方式-值为列表" class="headerlink" title="(3)字典行列表的方式-值为列表"></a>(3)字典行列表的方式-值为列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df=pd.DataFrame(&#123;<span class="string">'name'</span>:[<span class="string">'frank'</span>,<span class="string">'mary'</span>,<span class="string">'tom'</span>,<span class="string">'ted'</span>,<span class="string">'jean'</span>,<span class="string">'lisa'</span>],</span><br><span class="line">                <span class="string">'gender'</span>:[<span class="string">'M'</span>,<span class="string">'F'</span>,<span class="string">'M'</span>,<span class="string">'M'</span>,<span class="string">'F'</span>,<span class="string">'F'</span>],</span><br><span class="line">                <span class="string">'age'</span>:[<span class="number">29</span>,<span class="number">23</span>,<span class="number">35</span>,<span class="number">33</span>,<span class="number">21</span>,<span class="number">20</span>]&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/05/16/pandas-sql/4.png" alt="avatar"></p>
+<h2 id="读取-emp-dept"><a href="#读取-emp-dept" class="headerlink" title="读取 emp dept"></a>读取 emp dept</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_emp=pd.read_csv(<span class="string">'data/emp.csv'</span>,header=<span class="number">0</span>)  <span class="comment">#header = 0  用第0 行作为索引</span></span><br><span class="line">df_emp</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_emp[<span class="string">'newcol'</span>]=np.NaN</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_emp</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>      <th>newcol</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>NaN</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>NaN</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_emp.pop(<span class="string">'newcol'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">0    NaN</span><br><span class="line">1    NaN</span><br><span class="line">2    NaN</span><br><span class="line">3    NaN</span><br><span class="line">4    NaN</span><br><span class="line">5    NaN</span><br><span class="line">6    NaN</span><br><span class="line">7    NaN</span><br><span class="line">8    NaN</span><br><span class="line">9    NaN</span><br><span class="line">10   NaN</span><br><span class="line">11   NaN</span><br><span class="line">12   NaN</span><br><span class="line">Name: newcol, dtype: float64</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_emp</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.index=[<span class="string">'frank'</span>,<span class="string">'mary'</span>,<span class="string">'tom'</span>,<span class="string">'ted'</span>,<span class="string">'jean'</span>,<span class="string">'lisa'</span>]</span><br><span class="line">df.set_index([<span class="string">'name'</span>,<span class="string">'gender'</span>],drop=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th></th><br>      <th>name</th><br>      <th>gender</th><br>      <th>age</th><br>    </tr><br>    <tr><br>      <th>name</th><br>      <th>gender</th><br>      <th></th><br>      <th></th><br>      <th></th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>frank</th><br>      <th>M</th><br>      <td>frank</td><br>      <td>M</td><br>      <td>29</td><br>    </tr><br>    <tr><br>      <th>mary</th><br>      <th>F</th><br>      <td>mary</td><br>      <td>F</td><br>      <td>23</td><br>    </tr><br>    <tr><br>      <th>tom</th><br>      <th>M</th><br>      <td>tom</td><br>      <td>M</td><br>      <td>35</td><br>    </tr><br>    <tr><br>      <th>ted</th><br>      <th>M</th><br>      <td>ted</td><br>      <td>M</td><br>      <td>33</td><br>    </tr><br>    <tr><br>      <th>jean</th><br>      <th>F</th><br>      <td>jean</td><br>      <td>F</td><br>      <td>21</td><br>    </tr><br>    <tr><br>      <th>lisa</th><br>      <th>F</th><br>      <td>lisa</td><br>      <td>F</td><br>      <td>20</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.set_index(<span class="string">'gender'</span>,drop=<span class="literal">False</span>).set_index(<span class="string">'name'</span>,append=<span class="literal">True</span>,drop=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th></th><br>      <th>name</th><br>      <th>gender</th><br>      <th>age</th><br>    </tr><br>    <tr><br>      <th>gender</th><br>      <th>name</th><br>      <th></th><br>      <th></th><br>      <th></th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>M</th><br>      <th>frank</th><br>      <td>frank</td><br>      <td>M</td><br>      <td>29</td><br>    </tr><br>    <tr><br>      <th>F</th><br>      <th>mary</th><br>      <td>mary</td><br>      <td>F</td><br>      <td>23</td><br>    </tr><br>    <tr><br>      <th rowspan="2" valign="top">M</th><br>      <th>tom</th><br>      <td>tom</td><br>      <td>M</td><br>      <td>35</td><br>    </tr><br>    <tr><br>      <th>ted</th><br>      <td>ted</td><br>      <td>M</td><br>      <td>33</td><br>    </tr><br>    <tr><br>      <th rowspan="2" valign="top">F</th><br>      <th>jean</th><br>      <td>jean</td><br>      <td>F</td><br>      <td>21</td><br>    </tr><br>    <tr><br>      <th>lisa</th><br>      <td>lisa</td><br>      <td>F</td><br>      <td>20</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.set_index(<span class="string">'gender'</span>).reset_index()</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>gender</th><br>      <th>name</th><br>      <th>age</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>M</td><br>      <td>frank</td><br>      <td>29</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>F</td><br>      <td>mary</td><br>      <td>23</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>M</td><br>      <td>tom</td><br>      <td>35</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>M</td><br>      <td>ted</td><br>      <td>33</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>F</td><br>      <td>jean</td><br>      <td>21</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>F</td><br>      <td>lisa</td><br>      <td>20</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dates=pd.date_range(<span class="string">'2019-01-01'</span>,periods=<span class="number">6</span>)</span><br><span class="line">df.index=dates</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>name</th><br>      <th>gender</th><br>      <th>age</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>2019-01-01</th><br>      <td>frank</td><br>      <td>M</td><br>      <td>29</td><br>    </tr><br>    <tr><br>      <th>2019-01-02</th><br>      <td>mary</td><br>      <td>F</td><br>      <td>23</td><br>    </tr><br>    <tr><br>      <th>2019-01-03</th><br>      <td>tom</td><br>      <td>M</td><br>      <td>35</td><br>    </tr><br>    <tr><br>      <th>2019-01-04</th><br>      <td>ted</td><br>      <td>M</td><br>      <td>33</td><br>    </tr><br>    <tr><br>      <th>2019-01-05</th><br>      <td>jean</td><br>      <td>F</td><br>      <td>21</td><br>    </tr><br>    <tr><br>      <th>2019-01-06</th><br>      <td>lisa</td><br>      <td>F</td><br>      <td>20</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>name</th><br>      <th>gender</th><br>      <th>age</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>2019-01-01</th><br>      <td>frank</td><br>      <td>M</td><br>      <td>29</td><br>    </tr><br>    <tr><br>      <th>2019-01-02</th><br>      <td>mary</td><br>      <td>F</td><br>      <td>23</td><br>    </tr><br>    <tr><br>      <th>2019-01-03</th><br>      <td>tom</td><br>      <td>M</td><br>      <td>35</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.dtypes</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name      object</span><br><span class="line">gender    object</span><br><span class="line">age        int64</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.T</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>2019-01-01 00:00:00</th><br>      <th>2019-01-02 00:00:00</th><br>      <th>2019-01-03 00:00:00</th><br>      <th>2019-01-04 00:00:00</th><br>      <th>2019-01-05 00:00:00</th><br>      <th>2019-01-06 00:00:00</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>name</th><br>      <td>frank</td><br>      <td>mary</td><br>      <td>tom</td><br>      <td>ted</td><br>      <td>jean</td><br>      <td>lisa</td><br>    </tr><br>    <tr><br>      <th>gender</th><br>      <td>M</td><br>      <td>F</td><br>      <td>M</td><br>      <td>M</td><br>      <td>F</td><br>      <td>F</td><br>    </tr><br>    <tr><br>      <th>age</th><br>      <td>29</td><br>      <td>23</td><br>      <td>35</td><br>      <td>33</td><br>      <td>21</td><br>      <td>20</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<h1 id="数据操纵"><a href="#数据操纵" class="headerlink" title="数据操纵"></a>数据操纵</h1><h2 id="1-数据准备"><a href="#1-数据准备" class="headerlink" title="(1)数据准备"></a>(1)数据准备</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_emp=pd.read_csv(<span class="string">'data/emp.csv'</span>,header=<span class="number">0</span>)</span><br><span class="line">df_dept=pd.read_csv(<span class="string">'data/dept.csv'</span>,header=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_emp</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_dept</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<h2 id="2-连接-merge，join，concat"><a href="#2-连接-merge，join，concat" class="headerlink" title="(2)连接-merge，join，concat"></a>(2)连接-merge，join，concat</h2><h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><h4 id="Natural-join-自然连接"><a href="#Natural-join-自然连接" class="headerlink" title="Natural join   自然连接"></a>Natural join   自然连接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df_emp,df_dept)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<h4 id="from-A-join-B-using-Attr"><a href="#from-A-join-B-using-Attr" class="headerlink" title="from A join B using(Attr)"></a>from A join B using(Attr)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df_emp,df_dept,on=<span class="string">'DEPTNO'</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_dept2=df_dept.copy()</span><br><span class="line">df_dept2.columns=[<span class="string">'dno'</span>,<span class="string">'dname'</span>,<span class="string">'loc'</span>]</span><br><span class="line">df_dept2</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>dno</th><br>      <th>dname</th><br>      <th>loc</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df_dept,df_dept2,left_on=<span class="string">'DEPTNO'</span>,right_on=<span class="string">'dno'</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>      <th>dno</th><br>      <th>dname</th><br>      <th>loc</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df_dept,df_dept2,left_on=[<span class="string">'DEPTNO'</span>,<span class="string">'DNAME'</span>],right_on=[<span class="string">'dno'</span>,<span class="string">'dname'</span>])</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>      <th>dno</th><br>      <th>dname</th><br>      <th>loc</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>      <td>40</td><br>      <td>OPERATIONS</td><br>      <td>BOSTON</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_emp[<span class="string">'MGR'</span>]=df_emp[<span class="string">'MGR'</span>].apply(<span class="keyword">lambda</span> x: np.nan <span class="keyword">if</span> str(x).isspace() <span class="keyword">else</span> x)</span><br><span class="line">df_emp[<span class="string">'MGR'</span>]=df_emp[<span class="string">'MGR'</span>].astype(<span class="string">'float'</span>)</span><br><span class="line">res=pd.merge(df_emp,df_emp,left_on=[<span class="string">'MGR'</span>],right_on=[<span class="string">'EMPNO'</span>],suffixes=[<span class="string">'_emp'</span>,<span class="string">'_mgr'</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO_emp</th><br>      <th>ENAME_emp</th><br>      <th>JOB_emp</th><br>      <th>MGR_emp</th><br>      <th>HIREDATE_emp</th><br>      <th>SAL_emp</th><br>      <th>COMM_emp</th><br>      <th>DEPTNO_emp</th><br>      <th>EMPNO_mgr</th><br>      <th>ENAME_mgr</th><br>      <th>JOB_mgr</th><br>      <th>MGR_mgr</th><br>      <th>HIREDATE_mgr</th><br>      <th>SAL_mgr</th><br>      <th>COMM_mgr</th><br>      <th>DEPTNO_mgr</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+<h5 id="左边-left-on-是-DEPTNO，右边设置主键为-DEPTNO-，所以不用写-right-on"><a href="#左边-left-on-是-DEPTNO，右边设置主键为-DEPTNO-，所以不用写-right-on" class="headerlink" title="左边  left_on  是 DEPTNO，右边设置主键为 DEPTNO ，所以不用写 right_on"></a>左边  left_on  是 DEPTNO，右边设置主键为 DEPTNO ，所以不用写 right_on</h5><p>how 的意思是连接方式<br>例如：</p>
+<ul>
+<li>right   右连接  ， 只影响左边的表</li>
+<li>left     左连接  ， 只影响右边的表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df_emp,df_dept.set_index(<span class="string">'DEPTNO'</span>),left_on=<span class="string">'DEPTNO'</span>,right_index=<span class="literal">True</span>,how=<span class="string">'left'</span>,indicator=<span class="string">'dataSrc'</span>)</span><br></pre></td></tr></table></figure>
+<p></p>
+<table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>EMPNO</th><br>      <th>ENAME</th><br>      <th>JOB</th><br>      <th>MGR</th><br>      <th>HIREDATE</th><br>      <th>SAL</th><br>      <th>COMM</th><br>      <th>DEPTNO</th><br>      <th>DNAME</th><br>      <th>LOC</th><br>      <th>dataSrc</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>7369</td><br>      <td>SMITH</td><br>      <td>CLERK</td><br>      <td>7566.0</td><br>      <td>1980-12-17 00:00:00.000</td><br>      <td>800</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>7499</td><br>      <td>ALLEN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-20 00:00:00.000</td><br>      <td>1600</td><br>      <td>300.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>7521</td><br>      <td>WARD</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-02-22 00:00:00.000</td><br>      <td>1250</td><br>      <td>500.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>7566</td><br>      <td>JONES</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-04-02 00:00:00.000</td><br>      <td>2975</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>7654</td><br>      <td>MARTIN</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-28 00:00:00.000</td><br>      <td>1250</td><br>      <td>1400.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>7698</td><br>      <td>BLAKE</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-05-01 00:00:00.000</td><br>      <td>2850</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>6</th><br>      <td>7782</td><br>      <td>CLARK</td><br>      <td>MANAGER</td><br>      <td>7839.0</td><br>      <td>1981-06-09 00:00:00.000</td><br>      <td>2450</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>7</th><br>      <td>7788</td><br>      <td>SCOTT</td><br>      <td>ANALYST</td><br>      <td>7566.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>3000</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>8</th><br>      <td>7839</td><br>      <td>KING</td><br>      <td>PRESIDENT</td><br>      <td>NaN</td><br>      <td>1981-11-17 00:00:00.000</td><br>      <td>5000</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>9</th><br>      <td>7844</td><br>      <td>TURNER</td><br>      <td>SALESMAN</td><br>      <td>7698.0</td><br>      <td>1981-09-08 00:00:00.000</td><br>      <td>1500</td><br>      <td>0.0</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>10</th><br>      <td>7876</td><br>      <td>ADAMS</td><br>      <td>CLERK</td><br>      <td>7788.0</td><br>      <td>1987-06-13 00:00:00.000</td><br>      <td>1100</td><br>      <td>NaN</td><br>      <td>20</td><br>      <td>RESEARCH</td><br>      <td>DALLAS</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>11</th><br>      <td>7900</td><br>      <td>JAMES</td><br>      <td>CLERK</td><br>      <td>7698.0</td><br>      <td>1981-12-03 00:00:00.000</td><br>      <td>950</td><br>      <td>NaN</td><br>      <td>30</td><br>      <td>SALES</td><br>      <td>CHICAGO</td><br>      <td>both</td><br>    </tr><br>    <tr><br>      <th>12</th><br>      <td>7934</td><br>      <td>MILLER</td><br>      <td>CLERK</td><br>      <td>7782.0</td><br>      <td>1982-01-23 00:00:00.000</td><br>      <td>1300</td><br>      <td>NaN</td><br>      <td>10</td><br>      <td>ACCOUNTING</td><br>      <td>NEW YORK</td><br>      <td>both</td><br>    </tr><br>  </tbody><br></table>
+
+<p></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/numpy-basic/" rel="next" title="numpy_basic">
+                <i class="fa fa-chevron-left"></i> numpy_basic
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/21/tensor-实战（1）手写数字识别/" rel="prev" title="tensor 实战（1）手写数字识别">
+                tensor 实战（1）手写数字识别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <a href="/">
+   <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="leekle">
+</a>
+
+            
+              <p class="site-author-name" itemprop="name">leekle</p>
+              <p class="site-description motion-element" itemprop="description">leekle</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pandas-sql-merge"><span class="nav-number">1.</span> <span class="nav-text">pandas  sql  merge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DataFrame"><span class="nav-number">2.</span> <span class="nav-text">DataFrame</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值构建"><span class="nav-number">2.1.</span> <span class="nav-text">赋值构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）二维数组方式"><span class="nav-number">2.1.1.</span> <span class="nav-text">（1）二维数组方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-字典行列表方式-值为单值的字典"><span class="nav-number">2.1.2.</span> <span class="nav-text">(2)字典行列表方式-值为单值的字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-字典行列表的方式-值为列表"><span class="nav-number">2.1.3.</span> <span class="nav-text">(3)字典行列表的方式-值为列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取-emp-dept"><span class="nav-number">2.2.</span> <span class="nav-text">读取 emp dept</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据操纵"><span class="nav-number">3.</span> <span class="nav-text">数据操纵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据准备"><span class="nav-number">3.1.</span> <span class="nav-text">(1)数据准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-连接-merge，join，concat"><span class="nav-number">3.2.</span> <span class="nav-text">(2)连接-merge，join，concat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">3.2.1.</span> <span class="nav-text">merge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Natural-join-自然连接"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">Natural join   自然连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from-A-join-B-using-Attr"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">from A join B using(Attr)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自连接"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">自连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#左边-left-on-是-DEPTNO，右边设置主键为-DEPTNO-，所以不用写-right-on"><span class="nav-number">3.2.1.3.1.</span> <span class="nav-text">左边  left_on  是 DEPTNO，右边设置主键为 DEPTNO ，所以不用写 right_on</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-和合法化"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leekle</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+-->
+
+
+
+
+<span id="busuanzi_container_site_uv">
+  本站访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
